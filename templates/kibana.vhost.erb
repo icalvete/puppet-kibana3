@@ -4,7 +4,8 @@
   ServerName kibana.smartpurposes.net
   DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-master/src"
   ErrorLog ${APACHE_LOG_DIR}/kibana_error.log
-  CustomLog  ${APACHE_LOG_DIR}/kibana.log common
+  #CustomLog  ${APACHE_LOG_DIR}/kibana.log common
+  CustomLog  '|/usr/bin/logger -p local4.info -t apache' combined
 
   <Location />
     AuthType Basic
