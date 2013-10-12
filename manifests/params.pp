@@ -3,6 +3,8 @@ class kibana3::params {
   $webserver_user       = 'www-data'
   $webserver_group      = 'www-data'
 
+  $org_domain           = hiera('org_domain')
+
   $repo_scheme          = hiera('sp_repo_scheme')
   $repo_domain          = hiera('sp_repo_domain')
   $repo_port            = hiera('sp_repo_port')
