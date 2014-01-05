@@ -7,8 +7,8 @@ class kibana3::config {
 
   file{ 'kibana3_vhost':
     ensure  => present,
-    path    => "${apache2::params::apache2_ensites}/kibana.vhost",
-    content => template("${module_name}/kibana.vhost.erb"),
+    path    => "${apache2::params::ensites}/kibana.vhost.conf",
+    content => template("${module_name}/kibana.vhost.conf.erb"),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
