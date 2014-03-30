@@ -7,7 +7,7 @@
 <VirtualHost *:443>
 
   ServerName kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
-  DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-master/src"
+  DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-3.0.0"
   #ErrorLog ${APACHE_LOG_DIR}/kibana_error.log
   #CustomLog  ${APACHE_LOG_DIR}/kibana.log common
   ErrorLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::error'

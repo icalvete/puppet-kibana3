@@ -16,7 +16,7 @@ class kibana3::config {
 
   file{ 'kibana3_config':
     ensure  => present,
-    path    => "${kibana3::params::kibana_document_root}/kibana-master/src/config.js",
+    path    => "${kibana3::params::kibana_document_root}/kibana-3.0.0/config.js",
     content => template("${module_name}/config.js.erb"),
     owner   => 'root',
     group   => 'root',
