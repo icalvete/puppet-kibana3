@@ -13,7 +13,7 @@ class kibana3::params {
   $repo_path            = hiera('sp_repo_path')
   $package              = hiera('kibana_package')
 
-  $kibana_server        = hiera('kibana_server')
+  $elasticsearch_server = hiera('elasticsearch_vip')
   $kibana_document_root = hiera('kibana_document_root')
   $kibana_htpasswd_file = hiera('htpasswd_file')
   $kibana_htpasswd_user = 'kibana'
