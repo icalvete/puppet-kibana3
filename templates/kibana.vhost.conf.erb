@@ -1,5 +1,6 @@
 <VirtualHost *:80>
   ServerName kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
+  ServerAlias kibana.vagrant.net
   RedirectPermanent / https://kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
 </VirtualHost>
 
@@ -7,6 +8,7 @@
 <VirtualHost *:443>
 
   ServerName kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
+  ServerAlias kibana.vagrant.net
   DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-3.0.0"
   #ErrorLog ${APACHE_LOG_DIR}/kibana_error.log
   #CustomLog  ${APACHE_LOG_DIR}/kibana.log common
