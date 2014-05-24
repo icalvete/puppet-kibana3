@@ -1,15 +1,21 @@
 <VirtualHost *:80>
-  ServerName kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
+  ServerName kibana.<%= scope.lookupvar('kibana3::org_domain') %>
   ServerAlias kibana.vagrant.net
-  RedirectPermanent / https://kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
+  <% @server_alias.each do |sa| -%>
+ServerAlias <%= sa %>
+  <% end -%>
+RedirectPermanent / https://kibana.<%= scope.lookupvar('kibana3::org_domain') %>
 </VirtualHost>
 
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
 
-  ServerName kibana.<%= scope.lookupvar('kibana3::params::org_domain') %>
+  ServerName kibana.<%= scope.lookupvar('kibana3::org_domain') %>
   ServerAlias kibana.vagrant.net
-  DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-3.0.0"
+  <% @server_alias.each do |sa| -%>
+ServerAlias <%= sa %>
+  <% end -%>
+DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-3.0.0"
   #ErrorLog ${APACHE_LOG_DIR}/kibana_error.log
   #CustomLog  ${APACHE_LOG_DIR}/kibana.log common
   ErrorLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::error'
