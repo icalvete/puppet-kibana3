@@ -24,8 +24,11 @@ function (Settings) {
      * kibana installed on. You probably want to set it to the FQDN of your
      * elasticsearch host
      */
-    elasticsearch: "http://"+window.location.hostname+":9200",
-    /** elasticsearch: "http://<%= scope.lookupvar('kibana3::params::elasticsearch_server') %>:9200", **/
+    <% if scope.lookupvar('kibana3::elasticsearch_server') -%>
+      elasticsearch: "http://<%= scope.lookupvar('kibana3::elasticsearch_server') -%>:9200",
+    <% else -%>
+      elasticsearch: "http://"+window.location.hostname+":9200",
+    <% end -%>
 
     /** @scratch /configuration/config.js/5
      *
