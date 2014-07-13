@@ -5,13 +5,9 @@ class kibana3::config {
     password => $kibana3::params::kibana_htpasswd_pass,
   }
 
-  file{ 'kibana3_vhost':
-    ensure  => present,
-    path    => "${apache2::params::ensites}/kibana.vhost.conf",
-    content => template("${module_name}/kibana.vhost.conf.erb"),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  apache2::site{'kibana3_vhost':
+     source  => "${module_name}/web/apache2/kibana.vhost.conf.erb",
+     require => Class['roles::apache2_server']
   }
 
   file{ 'kibana3_config':

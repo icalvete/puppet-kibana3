@@ -1,7 +1,10 @@
 <VirtualHost *:80>
   ServerName kibana.<%= scope.lookupvar('kibana3::org_domain') %>
   ServerAlias kibana.vagrant.net
-  <% @server_alias.each do |sa| -%>
+  <% 
+      @server_alias =  scope.lookupvar('kibana3::server_alias')
+      @server_alias.each do |sa| 
+  -%>
 ServerAlias <%= sa %>
   <% end -%>
 RedirectPermanent / https://kibana.<%= scope.lookupvar('kibana3::org_domain') %>
@@ -12,7 +15,10 @@ RedirectPermanent / https://kibana.<%= scope.lookupvar('kibana3::org_domain') %>
 
   ServerName kibana.<%= scope.lookupvar('kibana3::org_domain') %>
   ServerAlias kibana.vagrant.net
-  <% @server_alias.each do |sa| -%>
+  <% 
+      @server_alias =  scope.lookupvar('kibana3::server_alias')
+      @server_alias.each do |sa| 
+  -%>
 ServerAlias <%= sa %>
   <% end -%>
 DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-3.1.0"
