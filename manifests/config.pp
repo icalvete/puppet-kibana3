@@ -6,8 +6,8 @@ class kibana3::config {
   }
 
   apache2::site{'kibana3_vhost':
-     source  => "${module_name}/web/apache2/kibana.vhost.conf.erb",
-     require => Class['roles::apache2_server']
+    source  => "${module_name}/web/apache2/kibana.vhost.conf.erb",
+    require => Class['roles::apache2_server']
   }
 
   file{ 'kibana3_config':
