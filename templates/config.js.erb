@@ -6,7 +6,7 @@
  */
 define(['settings'],
 function (Settings) {
-
+  "use strict";
 
   /** @scratch /configuration/config.js/2
    *
@@ -23,11 +23,24 @@ function (Settings) {
      * the same host. By default this will attempt to reach ES at the same host you have
      * kibana installed on. You probably want to set it to the FQDN of your
      * elasticsearch host
+     *
+     * Note: this can also be an object if you want to pass options to the http client. For example:
+     *
+     *  +elasticsearch: {server: "http://localhost:9200", withCredentials: true}+
+     *
      */
     <% if scope.lookupvar('kibana3::elasticsearch_server') -%>
-      elasticsearch: "http://<%= scope.lookupvar('kibana3::elasticsearch_server') -%>:9200",
+      <% if scope.lookupvar('kibana3::elasticsearch_server_auth') -%>
+    elasticsearch: {server: "<%= scope.lookupvar('kibana3::elasticsearch_server') -%>", withCredentials: true},
+      <% else -%>
+    elasticsearch: "http://<%= scope.lookupvar('kibana3::elasticsearch_server') -%>:9200",
+      <% end -%>
     <% else -%>
-      elasticsearch: "http://"+window.location.hostname+":9200",
+      <% if scope.lookupvar('kibana3::elasticsearch_server_auth') -%>
+    elasticsearch: {server: "http://"+window.location.hostname+":9200", , withCredentials: true},
+      <% else -%>
+    elasticsearch: "http://"+window.location.hostname+":9200",
+      <% end -%>
     <% end -%>
 
     /** @scratch /configuration/config.js/5
