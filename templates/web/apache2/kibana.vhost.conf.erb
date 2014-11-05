@@ -24,8 +24,8 @@ ServerAlias <%= sa %>
 DocumentRoot "<%= scope.lookupvar('kibana3::params::kibana_document_root') -%>/kibana-3.1.0"
   #ErrorLog ${APACHE_LOG_DIR}/kibana_error.log
   #CustomLog  ${APACHE_LOG_DIR}/kibana.log common
-  ErrorLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::error'
-  CustomLog '|/usr/bin/logger -p local4.info -t ::<%= scope.lookupvar('apache2::environment') -%>::apache::access' combined_sp
+  ErrorLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::environment') -%>::error'
+  CustomLog '|/usr/bin/logger -p local3.info -t ::apache::<%= scope.lookupvar('apache2::environment') -%>::access' combined_sp
 
   <Location />
     AuthType Basic
