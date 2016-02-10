@@ -14,7 +14,8 @@ class kibana3 (
   $elasticsearch_server      = $kibana3::params::elasticsearch_server,
   $elasticsearch_server_auth = $kibana3::params::elasticsearch_server_auth,
   $elasticsearch_user        = $kibana3::params::elasticsearch_user,
-  $elasticsearch_user_pass   = $kibana3::params::elasticsearch_user_pass
+  $elasticsearch_user_pass   = $kibana3::params::elasticsearch_user_pass,
+  $config_version            = undef
 
 ) inherits kibana3::params {
 
